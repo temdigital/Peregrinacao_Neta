@@ -8,17 +8,15 @@
   <meta property="og:title" content="Peregrinação com a Neta – Passeios Religiosos" />
   <meta property="og:description" content="Viva uma experiência de fé e turismo com roteiros exclusivos para os principais santuários do Brasil." />
   <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Peregrinação+com+a+Neta" />
-  <meta property="og:url" content="https://peregrinacaoneta.com.br" />
+  <meta property="og:url" content="https://temdigital.github.io/Peregrinacao_Neta/" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="canonical" href="https://peregrinacaoneta.com.br" />
+  <link rel="canonical" href="https://temdigital.github.io/Peregrinacao_Neta/" />
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
 
-  <!-- Leaflet CSS (para o mapa) -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <style>
     /* ===== RESET E VARIÁVEIS ===== */
     * {
@@ -28,13 +26,13 @@
     }
 
     :root {
-      --primary: #15acf4;
-      --secondary: #9b8556;
-      --dark: #202718;
+      --primary: #202718;      /* escuro esverdiado (principal) */
+      --secondary: #15acf4;    /* azul (destaque) */
+      --gold: #9b8556;         /* dourado */
       --light: #d0c9bb;
       --brown: #565c3e;
       --white: #ffffff;
-      --font-base: 14px;
+      --font-base: 14pt;       /* tamanho base */
       --radius: 12px;
       --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
     }
@@ -47,7 +45,7 @@
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--light);
-      color: var(--dark);
+      color: var(--primary);
       line-height: 1.6;
       padding-bottom: 80px; /* espaço para o botão flutuante */
     }
@@ -60,10 +58,10 @@
 
     a {
       text-decoration: none;
-      color: var(--primary);
+      color: var(--secondary);
     }
     a:hover {
-      color: var(--secondary);
+      color: var(--gold);
     }
 
     .container {
@@ -112,7 +110,7 @@
 
     /* ===== HEADER / NAV ===== */
     header {
-      background: var(--dark);
+      background: var(--primary);
       color: var(--light);
       padding: 16px 0;
       position: sticky;
@@ -130,11 +128,11 @@
     .logo {
       font-size: 1.5rem;
       font-weight: 700;
-      color: var(--primary);
+      color: var(--secondary);
       letter-spacing: -0.5px;
     }
     .logo span {
-      color: var(--secondary);
+      color: var(--gold);
       font-weight: 400;
     }
     .nav-links {
@@ -151,8 +149,8 @@
       border-bottom: 2px solid transparent;
     }
     .nav-links a:hover {
-      color: var(--primary);
-      border-bottom-color: var(--primary);
+      color: var(--secondary);
+      border-bottom-color: var(--secondary);
     }
 
     /* ===== BREADCRUMB ===== */
@@ -168,7 +166,7 @@
       margin: 0 6px;
     }
     .breadcrumb a {
-      color: var(--primary);
+      color: var(--secondary);
       font-weight: 500;
     }
     .breadcrumb a:hover {
@@ -177,7 +175,7 @@
 
     /* ===== HERO ===== */
     .hero {
-      background: linear-gradient(135deg, var(--dark) 0%, #2a3a2a 100%);
+      background: linear-gradient(135deg, var(--primary) 0%, #2a3a2a 100%);
       color: white;
       padding: 60px 0 50px;
       text-align: center;
@@ -202,7 +200,7 @@
       position: relative;
     }
     .hero h1 .destaque {
-      color: var(--secondary);
+      color: var(--gold);
     }
     .hero p {
       font-size: 1.2rem;
@@ -230,7 +228,7 @@
       text-align: center;
     }
     .btn-primary {
-      background: var(--primary);
+      background: var(--secondary);
       color: white;
       box-shadow: 0 4px 15px rgba(21, 172, 244, 0.4);
     }
@@ -240,7 +238,7 @@
       color: white;
     }
     .btn-secondary {
-      background: var(--secondary);
+      background: var(--gold);
       color: white;
       box-shadow: 0 4px 15px rgba(155, 133, 86, 0.3);
     }
@@ -256,7 +254,7 @@
     }
     .btn-outline:hover {
       background: white;
-      color: var(--dark);
+      color: var(--primary);
     }
 
     /* ===== DESTINOS ===== */
@@ -268,7 +266,7 @@
       font-size: 2.2rem;
       text-align: center;
       margin-bottom: 12px;
-      color: var(--dark);
+      color: var(--primary);
     }
     .destinos .sub {
       text-align: center;
@@ -304,7 +302,7 @@
     .card-destino .info h3 {
       font-size: 1.4rem;
       margin-bottom: 8px;
-      color: var(--dark);
+      color: var(--primary);
     }
     .card-destino .info p {
       color: var(--brown);
@@ -313,7 +311,7 @@
     }
     .card-destino .info .preco {
       font-weight: 700;
-      color: var(--primary);
+      color: var(--secondary);
       font-size: 1.2rem;
     }
     .card-destino .info .btn {
@@ -321,17 +319,17 @@
       width: 100%;
     }
 
-    /* ===== CASES / DEPOIMENTOS ===== */
+    /* ===== DEPOIMENTOS ===== */
     .depoimentos {
       padding: 60px 0;
-      background: var(--dark);
+      background: var(--primary);
       color: white;
     }
     .depoimentos h2 {
       text-align: center;
       font-size: 2.2rem;
       margin-bottom: 40px;
-      color: var(--secondary);
+      color: var(--gold);
     }
     .grid-depoimentos {
       display: grid;
@@ -361,7 +359,7 @@
       color: var(--secondary);
     }
 
-    /* ===== FAQ ===== */
+    /* ===== FAQ COM ANIMAÇÃO ===== */
     .faq {
       padding: 60px 0;
       background: var(--white);
@@ -370,38 +368,62 @@
       text-align: center;
       font-size: 2.2rem;
       margin-bottom: 40px;
-      color: var(--dark);
+      color: var(--primary);
     }
     .faq-item {
       max-width: 700px;
-      margin: 0 auto 16px;
+      margin: 0 auto 12px;
       border-bottom: 1px solid #ddd;
-      padding-bottom: 16px;
+      padding-bottom: 0;
     }
     .faq-item summary {
       font-weight: 600;
       font-size: 1.1rem;
       cursor: pointer;
-      color: var(--dark);
-      padding: 8px 0;
+      color: var(--primary);
+      padding: 16px 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      list-style: none; /* remove o triângulo padrão */
+      transition: color 0.3s;
+    }
+    .faq-item summary:hover {
+      color: var(--secondary);
+    }
+    .faq-item summary::-webkit-details-marker {
+      display: none; /* remove no Chrome/Safari */
     }
     .faq-item summary::after {
       content: '+';
-      font-size: 1.6rem;
-      color: var(--primary);
+      font-size: 1.8rem;
+      color: var(--secondary);
+      transition: transform 0.3s ease;
+      line-height: 1;
     }
     .faq-item[open] summary::after {
       content: '−';
+      transform: rotate(0deg);
     }
-    .faq-item p {
-      padding: 8px 0 12px;
+    /* Animação da resposta */
+    .faq-item .answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, opacity 0.3s ease;
+      opacity: 0;
+    }
+    .faq-item[open] .answer {
+      max-height: 300px; /* suficiente para o conteúdo */
+      opacity: 1;
+      padding-bottom: 20px;
+    }
+    .faq-item .answer p {
+      padding: 0 0 12px 0;
       color: var(--brown);
+      margin: 0;
     }
 
-    /* ===== MAPA ===== */
+    /* ===== MAPA (Google Maps iframe) ===== */
     .mapa-section {
       padding: 60px 0;
       background: var(--light);
@@ -410,21 +432,39 @@
       text-align: center;
       font-size: 2.2rem;
       margin-bottom: 10px;
+      color: var(--primary);
     }
     .mapa-section .sub {
       text-align: center;
       color: var(--brown);
       margin-bottom: 30px;
     }
-    #mapa {
+    .mapa-section iframe {
+      width: 100%;
       height: 400px;
+      border: 0;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
+    }
+    .mapa-section .btn-mapa {
+      display: inline-block;
+      margin-top: 16px;
+      background: var(--secondary);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    .mapa-section .btn-mapa:hover {
+      background: var(--gold);
+      color: white;
+      transform: translateY(-2px);
     }
 
     /* ===== RODAPÉ ===== */
     footer {
-      background: var(--dark);
+      background: var(--primary);
       color: var(--light);
       padding: 40px 0 20px;
       margin-top: 40px;
@@ -435,7 +475,7 @@
       gap: 30px;
     }
     footer h4 {
-      color: var(--secondary);
+      color: var(--gold);
       margin-bottom: 12px;
       font-size: 1rem;
     }
@@ -448,7 +488,7 @@
     }
     footer a:hover {
       opacity: 1;
-      color: var(--primary);
+      color: var(--secondary);
     }
     footer .copy {
       grid-column: 1 / -1;
@@ -498,7 +538,7 @@
       }
     }
     .modal-thanks .content h2 {
-      color: var(--secondary);
+      color: var(--gold);
       margin-bottom: 12px;
     }
     .modal-thanks .content p {
@@ -506,7 +546,7 @@
       margin-bottom: 24px;
     }
     .modal-thanks .content .btn {
-      background: var(--primary);
+      background: var(--secondary);
       color: white;
       border: none;
       padding: 12px 30px;
@@ -565,6 +605,9 @@
       .btn {
         width: 100%;
         text-align: center;
+      }
+      .mapa-section iframe {
+        height: 250px;
       }
     }
   </style>
@@ -673,39 +716,64 @@
     </div>
   </section>
 
-  <!-- ===== FAQ ===== -->
+  <!-- ===== FAQ COM ANIMAÇÃO ===== -->
   <section class="faq" id="faq">
     <div class="container">
       <h2>Perguntas frequentes</h2>
+
       <div class="faq-item">
         <summary>Como faço para reservar um passeio?</summary>
-        <p>Basta clicar em "Reservar vaga" no destino desejado ou falar conosco pelo WhatsApp. Nossa equipe fará todo o processo.</p>
+        <div class="answer">
+          <p>Basta clicar em "Reservar vaga" no destino desejado ou falar conosco pelo WhatsApp. Nossa equipe fará todo o processo.</p>
+        </div>
       </div>
+
       <div class="faq-item">
         <summary>Quais formas de pagamento são aceitas?</summary>
-        <p>Aceitamos cartão de crédito (parcelado), PIX, boleto e transferência bancária. Consulte condições especiais para grupos.</p>
+        <div class="answer">
+          <p>Aceitamos cartão de crédito (parcelado), PIX, boleto e transferência bancária. Consulte condições especiais para grupos.</p>
+        </div>
       </div>
+
       <div class="faq-item">
         <summary>Os passeios incluem alimentação?</summary>
-        <p>Sim, todos os roteiros incluem café da manhã, almoço e jantar conforme o itinerário. Bebidas extras são por conta do peregrino.</p>
+        <div class="answer">
+          <p>Sim, todos os roteiros incluem café da manhã, almoço e jantar conforme o itinerário. Bebidas extras são por conta do peregrino.</p>
+        </div>
       </div>
+
       <div class="faq-item">
         <summary>Posso levar crianças ou idosos?</summary>
-        <p>Claro! Nossos ônibus são confortáveis e adaptados. Oferecemos atendimento especial para quem precisa de mais assistência.</p>
+        <div class="answer">
+          <p>Claro! Nossos ônibus são confortáveis e adaptados. Oferecemos atendimento especial para quem precisa de mais assistência.</p>
+        </div>
       </div>
+
       <div class="faq-item">
         <summary>Há seguro viagem incluso?</summary>
-        <p>Sim, todos os passageiros têm seguro de vida e acidentes pessoais. Você recebe a apólice por e-mail antes da viagem.</p>
+        <div class="answer">
+          <p>Sim, todos os passageiros têm seguro de vida e acidentes pessoais. Você recebe a apólice por e-mail antes da viagem.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== MAPA ===== -->
+  <!-- ===== MAPA (Google Maps) ===== -->
   <section class="mapa-section" id="mapa">
     <div class="container">
       <h2>Onde fica o Santuário Nacional?</h2>
-      <p class="sub">Veja a rota até Aparecida – nosso principal destino</p>
-      <div id="mapa"></div>
+      <p class="sub">Veja a localização exata em Aparecida – SP</p>
+      <!-- Google Maps iframe com o Santuário Nacional -->
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.606593895339!2d-45.2327359844726!3d-22.84741144097435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cbc63a24eb5b5f%3A0x7c0c67ea0ec9daa8!2sSantu%C3%A1rio%20Nacional%20de%20Nossa%20Senhora%20Aparecida!5e0!3m2!1spt-BR!2sbr!4v1645555555555" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+      <div style="text-align: center; margin-top: 20px;">
+        <a href="https://www.google.com/maps/dir//Santuário+Nacional+de+Nossa+Senhora+Aparecida" target="_blank" class="btn-mapa">
+          🗺️ Abrir no Google Maps
+        </a>
+      </div>
     </div>
   </section>
 
@@ -743,7 +811,7 @@
     </div>
   </footer>
 
-  <!-- ===== MODAL DE OBRIGADO (exemplo) ===== -->
+  <!-- ===== MODAL DE OBRIGADO ===== -->
   <div class="modal-thanks" id="modalThanks">
     <div class="content">
       <h2>🙏 Obrigado!</h2>
@@ -752,68 +820,22 @@
     </div>
   </div>
 
-  <!-- ===== LEAFLET ===== -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script>
-    // ===== MAPA COM ROTA ANIMADA =====
-    document.addEventListener('DOMContentLoaded', function() {
-      // Coordenadas do Santuário Nacional em Aparecida - SP
-      const santuario = [-22.8474, -45.2301];
-      const map = L.map('mapa').setView(santuario, 14);
-
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-      }).addTo(map);
-
-      // Marcador com ícone personalizado
-      const icon = L.divIcon({
-        html: '⛪',
-        className: 'marker-icon',
-        iconSize: [36, 36],
-        iconAnchor: [18, 36]
-      });
-      L.marker(santuario, { icon: icon }).addTo(map)
-        .bindPopup('<b>Santuário Nacional</b><br>Aparecida - SP');
-
-      // Linha animada (simula rota de chegada)
-      const points = [
-        [-22.8574, -45.2401],
-        [-22.8524, -45.2351],
-        [-22.8474, -45.2301]
-      ];
-      const polyline = L.polyline(points, { color: '#15acf4', weight: 4, opacity: 0.7 }).addTo(map);
-      // Animação: dash offset
-      let offset = 0;
-      setInterval(() => {
-        offset = (offset + 1) % 20;
-        polyline.setStyle({ dashOffset: offset });
-      }, 80);
-    });
-
-    // ===== BOTÃO DE RESERVA (CTA) =====
-    document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
-      if (btn.getAttribute('href') && btn.getAttribute('href').includes('wa.me')) {
-        btn.addEventListener('click', function(e) {
-          // Exemplo de evento de conversão (pode ser usado com GA)
-          console.log('CTA clicado: ' + this.innerText);
-        });
-      }
-    });
-
     // ===== FECHAR MODAL COM ESC =====
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         document.getElementById('modalThanks').classList.remove('aberto');
       }
     });
+
+    // ===== OPCIONAL: tracking de CTAs =====
+    document.querySelectorAll('.btn-primary, .btn-secondary, .btn-mapa').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        console.log('CTA clicado:', this.innerText.trim());
+        // Aqui você pode integrar com Google Analytics ou outro sistema
+      });
+    });
   </script>
 
-  <!-- ===== ROBOTS.TXT (será gerado separadamente) ===== -->
-  <!--
-    Para criar o robots.txt, coloque este conteúdo em um arquivo robots.txt na raiz:
-    User-agent: *
-    Allow: /
-    Sitemap: https://peregrinacaoneta.com.br/sitemap.xml
-  -->
 </body>
 </html>
