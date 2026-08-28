@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <title>Peregrinação com a Neta – Passeios Religiosos</title>
+  <meta name="description" content="Peregrinação com a Neta: viagens religiosas para Santuário de Aparecida, Divino Pai Eterno (GO) e Bom Jesus da Lapa (BA). Confira roteiros, datas e garanta sua vaga!" />
+  <meta property="og:title" content="Peregrinação com a Neta – Passeios Religiosos" />
+  <meta property="og:description" content="Viva uma experiência de fé e turismo com roteiros exclusivos para os principais santuários do Brasil." />
+  <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Peregrinação+com+a+Neta" />
+  <meta property="og:url" content="https://peregrinacaoneta.com.br" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://peregrinacaoneta.com.br" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+
+  <!-- Leaflet CSS (para o mapa) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    /* ===== RESET E VARIÁVEIS ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #15acf4;
+      --secondary: #9b8556;
+      --dark: #202718;
+      --light: #d0c9bb;
+      --brown: #565c3e;
+      --white: #ffffff;
+      --font-base: 14px;
+      --radius: 12px;
+      --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: var(--font-base);
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+      padding-bottom: 80px; /* espaço para o botão flutuante */
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary);
+    }
+    a:hover {
+      color: var(--secondary);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ===== BOTÃO WHATSAPP FLUTUANTE ===== */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      background-color: #25d366;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      transition: transform 0.3s ease;
+      animation: pulse-whats 2s infinite;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.08);
+    }
+    .whatsapp-float svg {
+      width: 36px;
+      height: 36px;
+      fill: white;
+    }
+
+    @keyframes pulse-whats {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+      }
+      70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+
+    /* ===== HEADER / NAV ===== */
+    header {
+      background: var(--dark);
+      color: var(--light);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+    .logo span {
+      color: var(--secondary);
+      font-weight: 400;
+    }
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: var(--light);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: 0.2s;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    /* ===== BREADCRUMB ===== */
+    .breadcrumb {
+      background: rgba(255, 255, 255, 0.6);
+      backdrop-filter: blur(4px);
+      padding: 12px 0;
+      font-size: 0.85rem;
+      color: var(--brown);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    .breadcrumb span {
+      margin: 0 6px;
+    }
+    .breadcrumb a {
+      color: var(--primary);
+      font-weight: 500;
+    }
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(135deg, var(--dark) 0%, #2a3a2a 100%);
+      color: white;
+      padding: 60px 0 50px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(21, 172, 244, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .hero h1 .destaque {
+      color: var(--secondary);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      opacity: 0.9;
+      position: relative;
+    }
+    .btn-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 4px 15px rgba(21, 172, 244, 0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(21, 172, 244, 0.6);
+      color: white;
+    }
+    .btn-secondary {
+      background: var(--secondary);
+      color: white;
+      box-shadow: 0 4px 15px rgba(155, 133, 86, 0.3);
+    }
+    .btn-secondary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(155, 133, 86, 0.5);
+      color: white;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+    }
+    .btn-outline:hover {
+      background: white;
+      color: var(--dark);
+    }
+
+    /* ===== DESTINOS ===== */
+    .destinos {
+      padding: 60px 0;
+      background: var(--white);
+    }
+    .destinos h2 {
+      font-size: 2.2rem;
+      text-align: center;
+      margin-bottom: 12px;
+      color: var(--dark);
+    }
+    .destinos .sub {
+      text-align: center;
+      color: var(--brown);
+      margin-bottom: 40px;
+      font-size: 1.1rem;
+    }
+    .grid-destinos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .card-destino {
+      background: var(--light);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card-destino:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+    }
+    .card-destino img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: #ccc;
+    }
+    .card-destino .info {
+      padding: 20px;
+    }
+    .card-destino .info h3 {
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+    .card-destino .info p {
+      color: var(--brown);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+    .card-destino .info .preco {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+    .card-destino .info .btn {
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    /* ===== CASES / DEPOIMENTOS ===== */
+    .depoimentos {
+      padding: 60px 0;
+      background: var(--dark);
+      color: white;
+    }
+    .depoimentos h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+      color: var(--secondary);
+    }
+    .grid-depoimentos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    .card-depoimento {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(4px);
+      padding: 24px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .card-depoimento .estrelas {
+      color: #f5b342;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+    .card-depoimento p {
+      font-style: italic;
+      opacity: 0.9;
+      margin-bottom: 12px;
+    }
+    .card-depoimento .autor {
+      font-weight: 600;
+      color: var(--secondary);
+    }
+
+    /* ===== FAQ ===== */
+    .faq {
+      padding: 60px 0;
+      background: var(--white);
+    }
+    .faq h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 40px;
+      color: var(--dark);
+    }
+    .faq-item {
+      max-width: 700px;
+      margin: 0 auto 16px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 16px;
+    }
+    .faq-item summary {
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: var(--dark);
+      padding: 8px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item summary::after {
+      content: '+';
+      font-size: 1.6rem;
+      color: var(--primary);
+    }
+    .faq-item[open] summary::after {
+      content: '−';
+    }
+    .faq-item p {
+      padding: 8px 0 12px;
+      color: var(--brown);
+    }
+
+    /* ===== MAPA ===== */
+    .mapa-section {
+      padding: 60px 0;
+      background: var(--light);
+    }
+    .mapa-section h2 {
+      text-align: center;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+    .mapa-section .sub {
+      text-align: center;
+      color: var(--brown);
+      margin-bottom: 30px;
+    }
+    #mapa {
+      height: 400px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    /* ===== RODAPÉ ===== */
+    footer {
+      background: var(--dark);
+      color: var(--light);
+      padding: 40px 0 20px;
+      margin-top: 40px;
+    }
+    footer .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+    footer h4 {
+      color: var(--secondary);
+      margin-bottom: 12px;
+      font-size: 1rem;
+    }
+    footer a {
+      color: var(--light);
+      opacity: 0.8;
+      display: block;
+      margin: 6px 0;
+      font-size: 0.9rem;
+    }
+    footer a:hover {
+      opacity: 1;
+      color: var(--primary);
+    }
+    footer .copy {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.85rem;
+      opacity: 0.6;
+      margin-top: 20px;
+    }
+
+    /* ===== MODAL DE OBRIGADO ===== */
+    .modal-thanks {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 99999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-thanks.aberto {
+      display: flex;
+    }
+    .modal-thanks .content {
+      background: white;
+      max-width: 500px;
+      padding: 40px;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+      animation: fadeUp 0.4s ease;
+    }
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .modal-thanks .content h2 {
+      color: var(--secondary);
+      margin-bottom: 12px;
+    }
+    .modal-thanks .content p {
+      color: var(--brown);
+      margin-bottom: 24px;
+    }
+    .modal-thanks .content .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* ===== RESPONSIVO ===== */
+    @media (max-width: 768px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+      .nav-links {
+        justify-content: center;
+        gap: 12px;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+      }
+      .whatsapp-float {
+        width: 52px;
+        height: 52px;
+        bottom: 16px;
+        right: 16px;
+      }
+      .whatsapp-float svg {
+        width: 30px;
+        height: 30px;
+      }
+      .grid-destinos {
+        grid-template-columns: 1fr;
+      }
+      footer .container {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+      .btn-group {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== BOTÃO WHATSAPP FLUTUANTE ===== -->
+  <a href="https://wa.me/5561992410466?text=Olá! Gostaria de mais informações sobre os passeios." target="_blank" rel="noopener" class="whatsapp-float" aria-label="Fale conosco no WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="container header-inner">
+      <div class="logo">Peregrinação<span> com a Neta</span></div>
+      <nav class="nav-links">
+        <a href="#destinos">Destinos</a>
+        <a href="#depoimentos">Depoimentos</a>
+        <a href="#faq">FAQ</a>
+        <a href="#mapa">Mapa</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== BREADCRUMB ===== -->
+  <div class="breadcrumb">
+    <div class="container">
+      <a href="/">Início</a> <span>&gt;</span> <a href="#destinos">Destinos</a> <span>&gt;</span> Santuário Nacional
+    </div>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="container">
+      <h1>Viaje com fé e <span class="destaque">alegria</span></h1>
+      <p>Roteiros exclusivos para os principais santuários do Brasil. Acompanhamento da Neta, com conforto e espiritualidade.</p>
+      <div class="btn-group">
+        <a href="#destinos" class="btn btn-primary">Ver passeios</a>
+        <a href="https://wa.me/5561992410466" target="_blank" class="btn btn-secondary">Fale conosco</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DESTINOS ===== -->
+  <section class="destinos" id="destinos">
+    <div class="container">
+      <h2>Nossos destinos</h2>
+      <p class="sub">Escolha sua peregrinação e viva momentos inesquecíveis</p>
+      <div class="grid-destinos">
+        <!-- Aparecida -->
+        <div class="card-destino">
+          <img src="https://via.placeholder.com/600x400/15acf4/ffffff?text=Santuário+Aparecida" alt="Santuário Nacional de Nossa Senhora Aparecida" />
+          <div class="info">
+            <h3>Aparecida – SP</h3>
+            <p>Visita ao maior santuário mariano do mundo. Missa, passeio pela cidade e momentos de oração.</p>
+            <span class="preco">A partir de R$ 199</span>
+            <a href="https://wa.me/5561992410466?text=Quero+informações+sobre+o+passeio+para+Aparecida" target="_blank" class="btn btn-primary">Reservar vaga</a>
+          </div>
+        </div>
+        <!-- Trindade -->
+        <div class="card-destino">
+          <img src="https://via.placeholder.com/600x400/9b8556/ffffff?text=Divino+Pai+Eterno" alt="Santuário do Divino Pai Eterno em Trindade-GO" />
+          <div class="info">
+            <h3>Trindade – GO</h3>
+            <p>Conheça a basílica do Divino Pai Eterno, participe da festa e das celebrações tradicionais.</p>
+            <span class="preco">A partir de R$ 249</span>
+            <a href="https://wa.me/5561992410466?text=Quero+informações+sobre+o+passeio+para+Trindade" target="_blank" class="btn btn-primary">Reservar vaga</a>
+          </div>
+        </div>
+        <!-- Bom Jesus da Lapa -->
+        <div class="card-destino">
+          <img src="https://via.placeholder.com/600x400/565c3e/ffffff?text=Bom+Jesus+da+Lapa" alt="Santuário de Bom Jesus da Lapa na Bahia" />
+          <div class="info">
+            <h3>Bom Jesus da Lapa – BA</h3>
+            <p>Um dos maiores centros de peregrinação do Nordeste. Gruta, fé e paisagens únicas.</p>
+            <span class="preco">A partir de R$ 299</span>
+            <a href="https://wa.me/5561992410466?text=Quero+informações+sobre+o+passeio+para+Bom+Jesus+da+Lapa" target="_blank" class="btn btn-primary">Reservar vaga</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DEPOIMENTOS ===== -->
+  <section class="depoimentos" id="depoimentos">
+    <div class="container">
+      <h2>O que dizem os peregrinos</h2>
+      <div class="grid-depoimentos">
+        <div class="card-depoimento">
+          <div class="estrelas">★★★★★</div>
+          <p>"Foi uma experiência transformadora. A Neta é uma guia atenciosa e o roteiro foi perfeito. Recomendo a todos!"</p>
+          <span class="autor">— Maria Fátima</span>
+        </div>
+        <div class="card-depoimento">
+          <div class="estrelas">★★★★★</div>
+          <p>"Viagem organizada, com muita oração e alegria. Conheci lugares lindos e fiz amizades para a vida toda."</p>
+          <span class="autor">— José Carlos</span>
+        </div>
+        <div class="card-depoimento">
+          <div class="estrelas">★★★★★</div>
+          <p>"Superou minhas expectativas. Tudo impecável, desde o transporte até as refeições. Já vou reservar o próximo!"</p>
+          <span class="autor">— Ana Lúcia</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <h2>Perguntas frequentes</h2>
+      <div class="faq-item">
+        <summary>Como faço para reservar um passeio?</summary>
+        <p>Basta clicar em "Reservar vaga" no destino desejado ou falar conosco pelo WhatsApp. Nossa equipe fará todo o processo.</p>
+      </div>
+      <div class="faq-item">
+        <summary>Quais formas de pagamento são aceitas?</summary>
+        <p>Aceitamos cartão de crédito (parcelado), PIX, boleto e transferência bancária. Consulte condições especiais para grupos.</p>
+      </div>
+      <div class="faq-item">
+        <summary>Os passeios incluem alimentação?</summary>
+        <p>Sim, todos os roteiros incluem café da manhã, almoço e jantar conforme o itinerário. Bebidas extras são por conta do peregrino.</p>
+      </div>
+      <div class="faq-item">
+        <summary>Posso levar crianças ou idosos?</summary>
+        <p>Claro! Nossos ônibus são confortáveis e adaptados. Oferecemos atendimento especial para quem precisa de mais assistência.</p>
+      </div>
+      <div class="faq-item">
+        <summary>Há seguro viagem incluso?</summary>
+        <p>Sim, todos os passageiros têm seguro de vida e acidentes pessoais. Você recebe a apólice por e-mail antes da viagem.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAPA ===== -->
+  <section class="mapa-section" id="mapa">
+    <div class="container">
+      <h2>Onde fica o Santuário Nacional?</h2>
+      <p class="sub">Veja a rota até Aparecida – nosso principal destino</p>
+      <div id="mapa"></div>
+    </div>
+  </section>
+
+  <!-- ===== RODAPÉ ===== -->
+  <footer id="contato">
+    <div class="container">
+      <div>
+        <h4>Peregrinação com a Neta</h4>
+        <p style="opacity:0.7; font-size:0.9rem;">Levando fé e alegria para os corações desde 2018.</p>
+        <p style="margin-top:8px;">📞 (61) 99241-0466</p>
+        <p>✉️ contato@peregrinacaoneta.com.br</p>
+      </div>
+      <div>
+        <h4>Destinos</h4>
+        <a href="#destinos">Aparecida</a>
+        <a href="#destinos">Trindade</a>
+        <a href="#destinos">Bom Jesus da Lapa</a>
+      </div>
+      <div>
+        <h4>Institucional</h4>
+        <a href="#faq">FAQ</a>
+        <a href="#" onclick="document.getElementById('modalThanks').classList.add('aberto'); return false;">Política de privacidade</a>
+        <a href="#">Termos de uso</a>
+        <a href="#">LGPD</a>
+      </div>
+      <div>
+        <h4>Redes sociais</h4>
+        <a href="https://www.instagram.com/peregrinacao_neta/" target="_blank">Instagram</a>
+        <a href="https://wa.me/5561992410466" target="_blank">WhatsApp</a>
+        <a href="#">YouTube</a>
+      </div>
+      <div class="copy">
+        &copy; 2026 Peregrinação com a Neta – Todos os direitos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== MODAL DE OBRIGADO (exemplo) ===== -->
+  <div class="modal-thanks" id="modalThanks">
+    <div class="content">
+      <h2>🙏 Obrigado!</h2>
+      <p>Sua mensagem foi enviada com sucesso. Em breve nossa equipe entrará em contato.</p>
+      <button class="btn" onclick="document.getElementById('modalThanks').classList.remove('aberto')">Fechar</button>
+    </div>
+  </div>
+
+  <!-- ===== LEAFLET ===== -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // ===== MAPA COM ROTA ANIMADA =====
+    document.addEventListener('DOMContentLoaded', function() {
+      // Coordenadas do Santuário Nacional em Aparecida - SP
+      const santuario = [-22.8474, -45.2301];
+      const map = L.map('mapa').setView(santuario, 14);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(map);
+
+      // Marcador com ícone personalizado
+      const icon = L.divIcon({
+        html: '⛪',
+        className: 'marker-icon',
+        iconSize: [36, 36],
+        iconAnchor: [18, 36]
+      });
+      L.marker(santuario, { icon: icon }).addTo(map)
+        .bindPopup('<b>Santuário Nacional</b><br>Aparecida - SP');
+
+      // Linha animada (simula rota de chegada)
+      const points = [
+        [-22.8574, -45.2401],
+        [-22.8524, -45.2351],
+        [-22.8474, -45.2301]
+      ];
+      const polyline = L.polyline(points, { color: '#15acf4', weight: 4, opacity: 0.7 }).addTo(map);
+      // Animação: dash offset
+      let offset = 0;
+      setInterval(() => {
+        offset = (offset + 1) % 20;
+        polyline.setStyle({ dashOffset: offset });
+      }, 80);
+    });
+
+    // ===== BOTÃO DE RESERVA (CTA) =====
+    document.querySelectorAll('.btn-primary, .btn-secondary').forEach(btn => {
+      if (btn.getAttribute('href') && btn.getAttribute('href').includes('wa.me')) {
+        btn.addEventListener('click', function(e) {
+          // Exemplo de evento de conversão (pode ser usado com GA)
+          console.log('CTA clicado: ' + this.innerText);
+        });
+      }
+    });
+
+    // ===== FECHAR MODAL COM ESC =====
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        document.getElementById('modalThanks').classList.remove('aberto');
+      }
+    });
+  </script>
+
+  <!-- ===== ROBOTS.TXT (será gerado separadamente) ===== -->
+  <!--
+    Para criar o robots.txt, coloque este conteúdo em um arquivo robots.txt na raiz:
+    User-agent: *
+    Allow: /
+    Sitemap: https://peregrinacaoneta.com.br/sitemap.xml
+  -->
+</body>
+</html>
