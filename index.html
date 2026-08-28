@@ -7,7 +7,7 @@
   <meta name="description" content="Peregrinação com a Neta: viagens religiosas para Santuário de Aparecida, Divino Pai Eterno (GO) e Bom Jesus da Lapa (BA). Confira roteiros, datas e garanta sua vaga!" />
   <meta property="og:title" content="Peregrinação com a Neta – Passeios Religiosos" />
   <meta property="og:description" content="Viva uma experiência de fé e turismo com roteiros exclusivos para os principais santuários do Brasil." />
-  <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Peregrinação+com+a+Neta" />
+  <meta property="og:image" content="https://media.gazetadopovo.com.br/2019/10/09103750/SANTUARIOAPARECIDA-660x372.jpg" />
   <meta property="og:url" content="https://temdigital.github.io/Peregrinacao_Neta/" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://temdigital.github.io/Peregrinacao_Neta/" />
@@ -169,30 +169,28 @@
       opacity: 0.6;
     }
 
+    /* ===== HERO COM IMAGEM DE FUNDO ===== */
     .hero {
-      background: linear-gradient(135deg, var(--primary) 0%, #0d7bb5 100%);
+      background: linear-gradient(rgba(21, 172, 244, 0.5), rgba(0, 0, 0, 0.6)), 
+                  url('https://media.gazetadopovo.com.br/2019/10/09103750/SANTUARIOAPARECIDA-660x372.jpg') center/cover no-repeat;
       color: white;
-      padding: 60px 0 50px;
+      padding: 80px 0 70px;
       text-align: center;
       position: relative;
-      overflow: hidden;
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
     }
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: -30%;
-      right: -10%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-      border-radius: 50%;
+    .hero .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
     }
     .hero h1 {
       font-size: 2.8rem;
       font-weight: 700;
       line-height: 1.2;
       margin-bottom: 16px;
-      position: relative;
     }
     .hero h1 .destaque {
       color: var(--gold);
@@ -201,15 +199,13 @@
       font-size: 1.2rem;
       max-width: 600px;
       margin: 0 auto 30px;
-      opacity: 0.9;
-      position: relative;
+      opacity: 0.95;
     }
     .btn-group {
       display: flex;
       gap: 16px;
       justify-content: center;
       flex-wrap: wrap;
-      position: relative;
     }
     .btn {
       display: inline-block;
@@ -546,6 +542,10 @@
       .nav-links {
         justify-content: center;
         gap: 12px;
+      }
+      .hero {
+        min-height: 60vh;
+        padding: 60px 0 50px;
       }
       .hero h1 {
         font-size: 2rem;
