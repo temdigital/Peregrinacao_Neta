@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://temdigital.github.io/Peregrinacao_Neta/sitemap.xml
