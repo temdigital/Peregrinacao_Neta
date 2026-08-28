@@ -169,7 +169,6 @@
       opacity: 0.6;
     }
 
-    /* ===== HERO COM IMAGEM DE FUNDO ===== */
     .hero {
       background: linear-gradient(rgba(21, 172, 244, 0.5), rgba(0, 0, 0, 0.6)), 
                   url('https://media.gazetadopovo.com.br/2019/10/09103750/SANTUARIOAPARECIDA-660x372.jpg') center/cover no-repeat;
@@ -479,6 +478,33 @@
       margin-top: 20px;
     }
 
+    /* Botão de login no rodapé */
+    .login-footer {
+      grid-column: 1 / -1;
+      text-align: center;
+      margin-top: 10px;
+    }
+    .btn-login {
+      background: var(--primary);
+      color: white;
+      padding: 12px 40px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(21, 172, 244, 0.3);
+      display: inline-block;
+      text-decoration: none;
+    }
+    .btn-login:hover {
+      background: var(--gold);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(155, 133, 86, 0.4);
+      color: white;
+    }
+
     .modal-thanks {
       display: none;
       position: fixed;
@@ -745,16 +771,17 @@
 
   <section class="mapa-section" id="mapa">
     <div class="container">
-      <h2>Onde fica o Santuário Nacional?</h2>
-      <p class="sub">Veja a localização exata em Aparecida – SP</p>
+      <h2>Rota de Valparaíso de Goiás até Aparecida - SP</h2>
+      <p class="sub">Veja o trajeto completo até o Santuário Nacional</p>
+      <!-- Google Maps com direções de Valparaíso de Goiás para Aparecida -->
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3669.606593895339!2d-45.2327359844726!3d-22.84741144097435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cbc63a24eb5b5f%3A0x7c0c67ea0ec9daa8!2sSantu%C3%A1rio%20Nacional%20de%20Nossa%20Senhora%20Aparecida!5e0!3m2!1spt-BR!2sbr!4v1645555555555"
+        src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3077995.520665738!2d-50.014183211411725!3d-15.56653908491861!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x9357d0e792fccb31%3A0x1aa3a5db3b78a456!2sValpara%C3%ADso%20de%20Goi%C3%A1s%2C%20GO!3m2!1d-16.0665534!2d-48.0040604!4m5!1s0x94cbc63a24eb5b5f%3A0x7c0c67ea0ec9daa8!2sSantu%C3%A1rio%20Nacional%20de%20Nossa%20Senhora%20Aparecida%2C%20Aparecida%20-%20SP!3m2!1d-22.8474114!2d-45.2301469!5e0!3m2!1spt-BR!2sbr"
         allowfullscreen=""
         loading="lazy">
       </iframe>
       <div style="text-align: center; margin-top: 20px;">
-        <a href="https://www.google.com/maps/dir//Santuário+Nacional+de+Nossa+Senhora+Aparecida" target="_blank" class="btn-mapa">
-          🗺️ Abrir no Google Maps
+        <a href="https://www.google.com/maps/dir/Valpara%C3%ADso+de+Goi%C3%A1s,+GO/Santu%C3%A1rio+Nacional+de+Nossa+Senhora+Aparecida,+Aparecida+-+SP" target="_blank" class="btn-mapa">
+          🗺️ Abrir rota no Google Maps
         </a>
       </div>
     </div>
@@ -786,6 +813,10 @@
         <a href="https://www.instagram.com/peregrinacao_neta/" target="_blank">Instagram</a>
         <a href="https://wa.me/5561992410466" target="_blank">WhatsApp</a>
         <a href="#">YouTube</a>
+      </div>
+      <!-- Botão de login centralizado -->
+      <div class="login-footer">
+        <a href="dashboard.html" class="btn-login">🔐 Acessar área restrita</a>
       </div>
       <div class="copy">
         &copy; 2026 Peregrinação com a Neta – Todos os direitos reservados.
