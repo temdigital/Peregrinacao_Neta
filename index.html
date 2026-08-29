@@ -7,7 +7,7 @@
   <meta name="description" content="Peregrinação com a Neta: viagens religiosas para Santuário de Aparecida, Divino Pai Eterno (GO) e Bom Jesus da Lapa (BA). Confira roteiros, datas e garanta sua vaga!" />
   <meta property="og:title" content="Peregrinação com a Neta – Passeios Religiosos" />
   <meta property="og:description" content="Viva uma experiência de fé e turismo com roteiros exclusivos para os principais santuários do Brasil." />
-  <meta property="og:image" content="https://media.gazetadopovo.com.br/2019/10/09103750/SANTUARIOAPARECIDA-660x372.jpg" />
+  <meta property="og:image" content="https://cdn.pixabay.com/photo/2020/01/27/14/58/santuario-nacional-4796228_1280.jpg" />
   <meta property="og:url" content="https://temdigital.github.io/Peregrinacao_Neta/" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://temdigital.github.io/Peregrinacao_Neta/" />
@@ -17,12 +17,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    /* ===== RESET E VARIÁVEIS ===== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --primary: #15acf4;
       --dark: #202718;
@@ -32,14 +28,9 @@
       --white: #ffffff;
       --font-base: 14pt;
       --radius: 12px;
-      --shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+      --shadow: 0 8px 30px rgba(0,0,0,0.12);
     }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: var(--font-base);
-    }
-
+    html { scroll-behavior: smooth; font-size: var(--font-base); }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background-color: var(--light);
@@ -47,27 +38,12 @@
       line-height: 1.6;
       padding-bottom: 80px;
     }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: var(--primary); }
+    a:hover { color: var(--gold); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    a {
-      text-decoration: none;
-      color: var(--primary);
-    }
-    a:hover {
-      color: var(--gold);
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
+    /* ===== WHATSAPP FLUTUANTE ===== */
     .whatsapp-float {
       position: fixed;
       bottom: 24px;
@@ -80,30 +56,19 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
       transition: transform 0.3s ease;
       animation: pulse-whats 2s infinite;
     }
-    .whatsapp-float:hover {
-      transform: scale(1.08);
-    }
-    .whatsapp-float svg {
-      width: 36px;
-      height: 36px;
-      fill: white;
-    }
+    .whatsapp-float:hover { transform: scale(1.08); }
+    .whatsapp-float svg { width: 36px; height: 36px; fill: white; }
     @keyframes pulse-whats {
-      0% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
-      }
-      70% {
-        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-      }
+      0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.5); }
+      70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
+      100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
     }
 
+    /* ===== HEADER ===== */
     header {
       background: var(--primary);
       color: white;
@@ -111,7 +76,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
     .header-inner {
       display: flex;
@@ -120,21 +85,9 @@
       flex-wrap: wrap;
       gap: 12px;
     }
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: white;
-      letter-spacing: -0.5px;
-    }
-    .logo span {
-      color: var(--gold);
-      font-weight: 400;
-    }
-    .nav-links {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+    .logo { font-size: 1.5rem; font-weight: 700; color: white; letter-spacing: -0.5px; }
+    .logo span { color: var(--gold); font-weight: 400; }
+    .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
     .nav-links a {
       color: white;
       font-weight: 500;
@@ -143,35 +96,24 @@
       padding: 4px 0;
       border-bottom: 2px solid transparent;
     }
-    .nav-links a:hover {
-      border-bottom-color: white;
-      color: var(--dark);
-    }
+    .nav-links a:hover { border-bottom-color: white; color: var(--dark); }
 
+    /* ===== BREADCRUMB ===== */
     .breadcrumb {
       background: var(--primary);
       color: white;
       padding: 12px 0;
       font-size: 0.85rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
     }
-    .breadcrumb a {
-      color: white;
-      font-weight: 500;
-      opacity: 0.8;
-    }
-    .breadcrumb a:hover {
-      opacity: 1;
-      text-decoration: underline;
-    }
-    .breadcrumb span {
-      margin: 0 6px;
-      opacity: 0.6;
-    }
+    .breadcrumb a { color: white; font-weight: 500; opacity: 0.8; }
+    .breadcrumb a:hover { opacity: 1; text-decoration: underline; }
+    .breadcrumb span { margin: 0 6px; opacity: 0.6; }
 
+    /* ===== HERO COM IMAGEM PIXABAY ===== */
     .hero {
-      background: linear-gradient(rgba(21, 172, 244, 0.5), rgba(0, 0, 0, 0.6)), 
-                  url('https://media.gazetadopovo.com.br/2019/10/09103750/SANTUARIOAPARECIDA-660x372.jpg') center/cover no-repeat;
+      background: linear-gradient(rgba(21,172,244,0.4), rgba(0,0,0,0.6)),
+                  url('https://cdn.pixabay.com/photo/2020/01/27/14/58/santuario-nacional-4796228_1280.jpg') center/cover no-repeat;
       color: white;
       padding: 80px 0 70px;
       text-align: center;
@@ -180,32 +122,11 @@
       display: flex;
       align-items: center;
     }
-    .hero .container {
-      position: relative;
-      z-index: 1;
-      width: 100%;
-    }
-    .hero h1 {
-      font-size: 2.8rem;
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 16px;
-    }
-    .hero h1 .destaque {
-      color: var(--gold);
-    }
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 600px;
-      margin: 0 auto 30px;
-      opacity: 0.95;
-    }
-    .btn-group {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+    .hero .container { position: relative; z-index: 1; width: 100%; }
+    .hero h1 { font-size: 2.8rem; font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+    .hero h1 .destaque { color: var(--gold); }
+    .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; opacity: 0.95; }
+    .btn-group { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
     .btn {
       display: inline-block;
       padding: 14px 32px;
@@ -217,43 +138,15 @@
       cursor: pointer;
       text-align: center;
     }
-    .btn-primary {
-      background: white;
-      color: var(--primary);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    }
-    .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-      color: var(--primary);
-    }
-    .btn-secondary {
-      background: var(--gold);
-      color: white;
-      box-shadow: 0 4px 15px rgba(155, 133, 86, 0.3);
-    }
-    .btn-secondary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(155, 133, 86, 0.5);
-      color: white;
-    }
+    .btn-primary { background: white; color: var(--primary); box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(0,0,0,0.25); color: var(--primary); }
+    .btn-secondary { background: var(--gold); color: white; box-shadow: 0 4px 15px rgba(155,133,86,0.3); }
+    .btn-secondary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(155,133,86,0.5); color: white; }
 
-    .destinos {
-      padding: 60px 0;
-      background: var(--white);
-    }
-    .destinos h2 {
-      font-size: 2.2rem;
-      text-align: center;
-      margin-bottom: 12px;
-      color: var(--dark);
-    }
-    .destinos .sub {
-      text-align: center;
-      color: var(--brown);
-      margin-bottom: 40px;
-      font-size: 1.1rem;
-    }
+    /* ===== DESTINOS ===== */
+    .destinos { padding: 60px 0; background: var(--white); }
+    .destinos h2 { font-size: 2.2rem; text-align: center; margin-bottom: 12px; color: var(--dark); }
+    .destinos .sub { text-align: center; color: var(--brown); margin-bottom: 40px; font-size: 1.1rem; }
     .grid-destinos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -266,96 +159,43 @@
       box-shadow: var(--shadow);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-    .card-destino:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
-    }
+    .card-destino:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(0,0,0,0.15); }
     .card-destino img {
       width: 100%;
       height: 200px;
       object-fit: cover;
       background: #ccc;
     }
-    .card-destino .info {
-      padding: 20px;
-    }
-    .card-destino .info h3 {
-      font-size: 1.4rem;
-      margin-bottom: 8px;
-      color: var(--dark);
-    }
-    .card-destino .info p {
-      color: var(--brown);
-      font-size: 0.95rem;
-      margin-bottom: 16px;
-    }
-    .card-destino .info .preco {
-      font-weight: 700;
-      color: var(--primary);
-      font-size: 1.2rem;
-    }
-    .card-destino .info .btn {
-      margin-top: 10px;
-      width: 100%;
-    }
-    .card-destino .info .btn-primary {
-      background: var(--primary);
-      color: white;
-    }
-    .card-destino .info .btn-primary:hover {
-      background: #0d7bb5;
-      color: white;
-    }
+    .card-destino .info { padding: 20px; }
+    .card-destino .info h3 { font-size: 1.4rem; margin-bottom: 8px; color: var(--dark); }
+    .card-destino .info p { color: var(--brown); font-size: 0.95rem; margin-bottom: 16px; }
+    .card-destino .info .preco { font-weight: 700; color: var(--primary); font-size: 1.2rem; }
+    .card-destino .info .btn { margin-top: 10px; width: 100%; }
+    .card-destino .info .btn-primary { background: var(--primary); color: white; }
+    .card-destino .info .btn-primary:hover { background: #0d7bb5; color: white; }
 
-    .depoimentos {
-      padding: 60px 0;
-      background: var(--dark);
-      color: white;
-    }
-    .depoimentos h2 {
-      text-align: center;
-      font-size: 2.2rem;
-      margin-bottom: 40px;
-      color: var(--gold);
-    }
+    /* ===== DEPOIMENTOS ===== */
+    .depoimentos { padding: 60px 0; background: var(--dark); color: white; }
+    .depoimentos h2 { text-align: center; font-size: 2.2rem; margin-bottom: 40px; color: var(--gold); }
     .grid-depoimentos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
     }
     .card-depoimento {
-      background: rgba(255, 255, 255, 0.06);
+      background: rgba(255,255,255,0.06);
       backdrop-filter: blur(4px);
       padding: 24px;
       border-radius: var(--radius);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255,255,255,0.08);
     }
-    .card-depoimento .estrelas {
-      color: #f5b342;
-      font-size: 1.2rem;
-      letter-spacing: 2px;
-      margin-bottom: 8px;
-    }
-    .card-depoimento p {
-      font-style: italic;
-      opacity: 0.9;
-      margin-bottom: 12px;
-    }
-    .card-depoimento .autor {
-      font-weight: 600;
-      color: var(--primary);
-    }
+    .card-depoimento .estrelas { color: #f5b342; font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 8px; }
+    .card-depoimento p { font-style: italic; opacity: 0.9; margin-bottom: 12px; }
+    .card-depoimento .autor { font-weight: 600; color: var(--primary); }
 
-    .faq {
-      padding: 60px 0;
-      background: var(--white);
-    }
-    .faq h2 {
-      text-align: center;
-      font-size: 2.2rem;
-      margin-bottom: 40px;
-      color: var(--dark);
-    }
+    /* ===== FAQ ===== */
+    .faq { padding: 60px 0; background: var(--white); }
+    .faq h2 { text-align: center; font-size: 2.2rem; margin-bottom: 40px; color: var(--dark); }
     .faq-item {
       max-width: 700px;
       margin: 0 auto 12px;
@@ -374,18 +214,14 @@
       transition: color 0.3s;
       user-select: none;
     }
-    .faq-question:hover {
-      color: var(--primary);
-    }
+    .faq-question:hover { color: var(--primary); }
     .faq-question .icon {
       font-size: 1.8rem;
       color: var(--primary);
       transition: transform 0.3s ease;
       line-height: 1;
     }
-    .faq-item.open .faq-question .icon {
-      transform: rotate(45deg);
-    }
+    .faq-item.open .faq-question .icon { transform: rotate(45deg); }
     .faq-answer {
       max-height: 0;
       overflow: hidden;
@@ -398,26 +234,12 @@
       opacity: 1;
       padding: 0 0 20px 0;
     }
-    .faq-answer p {
-      color: var(--brown);
-      margin: 0;
-    }
+    .faq-answer p { color: var(--brown); margin: 0; }
 
-    .mapa-section {
-      padding: 60px 0;
-      background: var(--light);
-    }
-    .mapa-section h2 {
-      text-align: center;
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-      color: var(--dark);
-    }
-    .mapa-section .sub {
-      text-align: center;
-      color: var(--brown);
-      margin-bottom: 30px;
-    }
+    /* ===== MAPA ===== */
+    .mapa-section { padding: 60px 0; background: var(--light); }
+    .mapa-section h2 { text-align: center; font-size: 2.2rem; margin-bottom: 10px; color: var(--dark); }
+    .mapa-section .sub { text-align: center; color: var(--brown); margin-bottom: 30px; }
     .mapa-section iframe {
       width: 100%;
       height: 400px;
@@ -435,12 +257,9 @@
       font-weight: 600;
       transition: 0.3s;
     }
-    .mapa-section .btn-mapa:hover {
-      background: var(--gold);
-      color: white;
-      transform: translateY(-2px);
-    }
+    .mapa-section .btn-mapa:hover { background: var(--gold); color: white; transform: translateY(-2px); }
 
+    /* ===== RODAPÉ ===== */
     footer {
       background: var(--dark);
       color: var(--light);
@@ -452,11 +271,7 @@
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 30px;
     }
-    footer h4 {
-      color: var(--gold);
-      margin-bottom: 12px;
-      font-size: 1rem;
-    }
+    footer h4 { color: var(--gold); margin-bottom: 12px; font-size: 1rem; }
     footer a {
       color: var(--light);
       opacity: 0.8;
@@ -464,21 +279,7 @@
       margin: 6px 0;
       font-size: 0.9rem;
     }
-    footer a:hover {
-      opacity: 1;
-      color: var(--primary);
-    }
-    footer .copy {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding-top: 20px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 0.85rem;
-      opacity: 0.6;
-      margin-top: 20px;
-    }
-
-    /* Botão de login no rodapé */
+    footer a:hover { opacity: 1; color: var(--primary); }
     .login-footer {
       grid-column: 1 / -1;
       text-align: center;
@@ -494,17 +295,27 @@
       border: none;
       cursor: pointer;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(21, 172, 244, 0.3);
+      box-shadow: 0 4px 15px rgba(21,172,244,0.3);
       display: inline-block;
       text-decoration: none;
     }
     .btn-login:hover {
       background: var(--gold);
       transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(155, 133, 86, 0.4);
+      box-shadow: 0 8px 25px rgba(155,133,86,0.4);
       color: white;
     }
+    footer .copy {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.85rem;
+      opacity: 0.6;
+      margin-top: 20px;
+    }
 
+    /* ===== MODAL ===== */
     .modal-thanks {
       display: none;
       position: fixed;
@@ -512,43 +323,29 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(0,0,0,0.7);
       backdrop-filter: blur(4px);
       z-index: 99999;
       align-items: center;
       justify-content: center;
       padding: 20px;
     }
-    .modal-thanks.aberto {
-      display: flex;
-    }
+    .modal-thanks.aberto { display: flex; }
     .modal-thanks .content {
       background: white;
       max-width: 500px;
       padding: 40px;
       border-radius: var(--radius);
       text-align: center;
-      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
       animation: fadeUp 0.4s ease;
     }
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    .modal-thanks .content h2 {
-      color: var(--gold);
-      margin-bottom: 12px;
-    }
-    .modal-thanks .content p {
-      color: var(--brown);
-      margin-bottom: 24px;
-    }
+    .modal-thanks .content h2 { color: var(--gold); margin-bottom: 12px; }
+    .modal-thanks .content p { color: var(--brown); margin-bottom: 24px; }
     .modal-thanks .content .btn {
       background: var(--primary);
       color: white;
@@ -560,70 +357,33 @@
     }
 
     @media (max-width: 768px) {
-      .header-inner {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
-      }
-      .nav-links {
-        justify-content: center;
-        gap: 12px;
-      }
-      .hero {
-        min-height: 60vh;
-        padding: 60px 0 50px;
-      }
-      .hero h1 {
-        font-size: 2rem;
-      }
-      .hero p {
-        font-size: 1rem;
-      }
-      .btn {
-        padding: 12px 24px;
-        font-size: 0.9rem;
-      }
-      .whatsapp-float {
-        width: 52px;
-        height: 52px;
-        bottom: 16px;
-        right: 16px;
-      }
-      .whatsapp-float svg {
-        width: 30px;
-        height: 30px;
-      }
-      .grid-destinos {
-        grid-template-columns: 1fr;
-      }
-      footer .container {
-        grid-template-columns: 1fr 1fr;
-      }
-      .mapa-section iframe {
-        height: 250px;
-      }
+      .header-inner { flex-direction: column; align-items: stretch; gap: 8px; }
+      .nav-links { justify-content: center; gap: 12px; }
+      .hero { min-height: 60vh; padding: 60px 0 50px; }
+      .hero h1 { font-size: 2rem; }
+      .hero p { font-size: 1rem; }
+      .btn { padding: 12px 24px; font-size: 0.9rem; }
+      .whatsapp-float { width: 52px; height: 52px; bottom: 16px; right: 16px; }
+      .whatsapp-float svg { width: 30px; height: 30px; }
+      .grid-destinos { grid-template-columns: 1fr; }
+      footer .container { grid-template-columns: 1fr 1fr; }
+      .mapa-section iframe { height: 250px; }
     }
     @media (max-width: 480px) {
-      .hero h1 {
-        font-size: 1.6rem;
-      }
-      .btn-group {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .btn {
-        width: 100%;
-        text-align: center;
-      }
+      .hero h1 { font-size: 1.6rem; }
+      .btn-group { flex-direction: column; align-items: stretch; }
+      .btn { width: 100%; text-align: center; }
     }
   </style>
 </head>
 <body>
 
+  <!-- ===== WHATSAPP FLUTUANTE ===== -->
   <a href="https://wa.me/5561992410466?text=Olá! Gostaria de mais informações sobre os passeios." target="_blank" rel="noopener" class="whatsapp-float" aria-label="Fale conosco no WhatsApp">
     <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 
+  <!-- ===== HEADER ===== -->
   <header>
     <div class="container header-inner">
       <div class="logo">Peregrinação<span> com a Neta</span></div>
@@ -637,12 +397,14 @@
     </div>
   </header>
 
+  <!-- ===== BREADCRUMB ===== -->
   <div class="breadcrumb">
     <div class="container">
       <a href="/">Início</a> <span>&gt;</span> <a href="#destinos">Destinos</a> <span>&gt;</span> Santuário Nacional
     </div>
   </div>
 
+  <!-- ===== HERO ===== -->
   <section class="hero">
     <div class="container">
       <h1>Viaje com fé e <span class="destaque">alegria</span></h1>
@@ -654,13 +416,15 @@
     </div>
   </section>
 
+  <!-- ===== DESTINOS ===== -->
   <section class="destinos" id="destinos">
     <div class="container">
       <h2>Nossos destinos</h2>
       <p class="sub">Escolha sua peregrinação e viva momentos inesquecíveis</p>
       <div class="grid-destinos">
+        <!-- Aparecida -->
         <div class="card-destino">
-          <img src="https://via.placeholder.com/600x400/15acf4/ffffff?text=Santuário+Aparecida" alt="Santuário Nacional de Nossa Senhora Aparecida" />
+          <img src="https://cdn.pixabay.com/photo/2019/10/19/18/33/church-4563285_1280.jpg" alt="Santuário Nacional de Nossa Senhora Aparecida" />
           <div class="info">
             <h3>Aparecida – SP</h3>
             <p>Visita ao maior santuário mariano do mundo. Missa, passeio pela cidade e momentos de oração.</p>
@@ -668,8 +432,9 @@
             <a href="https://wa.me/5561992410466?text=Quero+informações+sobre+o+passeio+para+Aparecida" target="_blank" class="btn btn-primary">Reservar vaga</a>
           </div>
         </div>
+        <!-- Trindade -->
         <div class="card-destino">
-          <img src="https://via.placeholder.com/600x400/9b8556/ffffff?text=Divino+Pai+Eterno" alt="Santuário do Divino Pai Eterno em Trindade-GO" />
+          <img src="https://cdn.pixabay.com/photo/2016/05/27/18/28/church-1423161_1280.jpg" alt="Santuário do Divino Pai Eterno em Trindade-GO" />
           <div class="info">
             <h3>Trindade – GO</h3>
             <p>Conheça a basílica do Divino Pai Eterno, participe da festa e das celebrações tradicionais.</p>
@@ -677,8 +442,9 @@
             <a href="https://wa.me/5561992410466?text=Quero+informações+sobre+o+passeio+para+Trindade" target="_blank" class="btn btn-primary">Reservar vaga</a>
           </div>
         </div>
+        <!-- Bom Jesus da Lapa -->
         <div class="card-destino">
-          <img src="https://via.placeholder.com/600x400/565c3e/ffffff?text=Bom+Jesus+da+Lapa" alt="Santuário de Bom Jesus da Lapa na Bahia" />
+          <img src="https://cdn.pixabay.com/photo/2019/03/08/19/29/church-4043576_1280.jpg" alt="Santuário de Bom Jesus da Lapa na Bahia" />
           <div class="info">
             <h3>Bom Jesus da Lapa – BA</h3>
             <p>Um dos maiores centros de peregrinação do Nordeste. Gruta, fé e paisagens únicas.</p>
@@ -690,6 +456,7 @@
     </div>
   </section>
 
+  <!-- ===== DEPOIMENTOS ===== -->
   <section class="depoimentos" id="depoimentos">
     <div class="container">
       <h2>O que dizem os peregrinos</h2>
@@ -713,67 +480,38 @@
     </div>
   </section>
 
+  <!-- ===== FAQ ===== -->
   <section class="faq" id="faq">
     <div class="container">
       <h2>Perguntas frequentes</h2>
-
       <div class="faq-item">
-        <div class="faq-question">
-          Como faço para reservar um passeio?
-          <span class="icon">+</span>
-        </div>
-        <div class="faq-answer">
-          <p>Basta clicar em "Reservar vaga" no destino desejado ou falar conosco pelo WhatsApp. Nossa equipe fará todo o processo.</p>
-        </div>
+        <div class="faq-question">Como faço para reservar um passeio? <span class="icon">+</span></div>
+        <div class="faq-answer"><p>Basta clicar em "Reservar vaga" no destino desejado ou falar conosco pelo WhatsApp. Nossa equipe fará todo o processo.</p></div>
       </div>
-
       <div class="faq-item">
-        <div class="faq-question">
-          Quais formas de pagamento são aceitas?
-          <span class="icon">+</span>
-        </div>
-        <div class="faq-answer">
-          <p>Aceitamos cartão de crédito (parcelado), PIX, boleto e transferência bancária. Consulte condições especiais para grupos.</p>
-        </div>
+        <div class="faq-question">Quais formas de pagamento são aceitas? <span class="icon">+</span></div>
+        <div class="faq-answer"><p>Aceitamos cartão de crédito (parcelado), PIX, boleto e transferência bancária. Consulte condições especiais para grupos.</p></div>
       </div>
-
       <div class="faq-item">
-        <div class="faq-question">
-          Os passeios incluem alimentação?
-          <span class="icon">+</span>
-        </div>
-        <div class="faq-answer">
-          <p>Sim, todos os roteiros incluem café da manhã, almoço e jantar conforme o itinerário. Bebidas extras são por conta do peregrino.</p>
-        </div>
+        <div class="faq-question">Os passeios incluem alimentação? <span class="icon">+</span></div>
+        <div class="faq-answer"><p>Sim, todos os roteiros incluem café da manhã, almoço e jantar conforme o itinerário. Bebidas extras são por conta do peregrino.</p></div>
       </div>
-
       <div class="faq-item">
-        <div class="faq-question">
-          Posso levar crianças ou idosos?
-          <span class="icon">+</span>
-        </div>
-        <div class="faq-answer">
-          <p>Claro! Nossos ônibus são confortáveis e adaptados. Oferecemos atendimento especial para quem precisa de mais assistência.</p>
-        </div>
+        <div class="faq-question">Posso levar crianças ou idosos? <span class="icon">+</span></div>
+        <div class="faq-answer"><p>Claro! Nossos ônibus são confortáveis e adaptados. Oferecemos atendimento especial para quem precisa de mais assistência.</p></div>
       </div>
-
       <div class="faq-item">
-        <div class="faq-question">
-          Há seguro viagem incluso?
-          <span class="icon">+</span>
-        </div>
-        <div class="faq-answer">
-          <p>Sim, todos os passageiros têm seguro de vida e acidentes pessoais. Você recebe a apólice por e-mail antes da viagem.</p>
-        </div>
+        <div class="faq-question">Há seguro viagem incluso? <span class="icon">+</span></div>
+        <div class="faq-answer"><p>Sim, todos os passageiros têm seguro de vida e acidentes pessoais. Você recebe a apólice por e-mail antes da viagem.</p></div>
       </div>
     </div>
   </section>
 
+  <!-- ===== MAPA ===== -->
   <section class="mapa-section" id="mapa">
     <div class="container">
       <h2>Rota de Valparaíso de Goiás até Aparecida - SP</h2>
       <p class="sub">Veja o trajeto completo até o Santuário Nacional</p>
-      <!-- Google Maps com direções de Valparaíso de Goiás para Aparecida -->
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3077995.520665738!2d-50.014183211411725!3d-15.56653908491861!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x9357d0e792fccb31%3A0x1aa3a5db3b78a456!2sValpara%C3%ADso%20de%20Goi%C3%A1s%2C%20GO!3m2!1d-16.0665534!2d-48.0040604!4m5!1s0x94cbc63a24eb5b5f%3A0x7c0c67ea0ec9daa8!2sSantu%C3%A1rio%20Nacional%20de%20Nossa%20Senhora%20Aparecida%2C%20Aparecida%20-%20SP!3m2!1d-22.8474114!2d-45.2301469!5e0!3m2!1spt-BR!2sbr"
         allowfullscreen=""
@@ -787,6 +525,7 @@
     </div>
   </section>
 
+  <!-- ===== RODAPÉ ===== -->
   <footer id="contato">
     <div class="container">
       <div>
@@ -814,9 +553,8 @@
         <a href="https://wa.me/5561992410466" target="_blank">WhatsApp</a>
         <a href="#">YouTube</a>
       </div>
-      <!-- Botão de login centralizado -->
       <div class="login-footer">
-        <a href="dashboard.html" class="btn-login">🔐 Acessar área restrita</a>
+        <a href="login.html" class="btn-login">🔐 Acessar área restrita</a>
       </div>
       <div class="copy">
         &copy; 2026 Peregrinação com a Neta – Todos os direitos reservados.
@@ -824,6 +562,7 @@
     </div>
   </footer>
 
+  <!-- ===== MODAL ===== -->
   <div class="modal-thanks" id="modalThanks">
     <div class="content">
       <h2>🙏 Obrigado!</h2>
@@ -833,23 +572,19 @@
   </div>
 
   <script>
+    // FAQ toggle
     document.querySelectorAll('.faq-item').forEach(item => {
       const question = item.querySelector('.faq-question');
       question.addEventListener('click', function() {
         const isOpen = item.classList.contains('open');
         document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-        if (!isOpen) {
-          item.classList.add('open');
-        }
+        if (!isOpen) item.classList.add('open');
       });
     });
-
+    // Fechar modal com ESC
     document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        document.getElementById('modalThanks').classList.remove('aberto');
-      }
+      if (e.key === 'Escape') document.getElementById('modalThanks').classList.remove('aberto');
     });
   </script>
-
 </body>
 </html>
