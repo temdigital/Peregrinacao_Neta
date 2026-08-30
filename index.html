@@ -110,7 +110,7 @@
     .breadcrumb a:hover { opacity: 1; text-decoration: underline; }
     .breadcrumb span { margin: 0 6px; opacity: 0.6; }
 
-    /* ===== HERO COM IMAGEM PIXABAY ===== */
+    /* ===== HERO ===== */
     .hero {
       background: linear-gradient(rgba(21,172,244,0.4), rgba(0,0,0,0.6)),
                   url('https://cdn.pixabay.com/photo/2020/01/27/14/58/santuario-nacional-4796228_1280.jpg') center/cover no-repeat;
@@ -236,7 +236,7 @@
     }
     .faq-answer p { color: var(--brown); margin: 0; }
 
-    /* ===== MAPA ===== */
+    /* ===== MAPA (SEM BOTÃO ABRIR ROTA) ===== */
     .mapa-section { padding: 60px 0; background: var(--light); }
     .mapa-section h2 { text-align: center; font-size: 2.2rem; margin-bottom: 10px; color: var(--dark); }
     .mapa-section .sub { text-align: center; color: var(--brown); margin-bottom: 30px; }
@@ -247,17 +247,6 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
-    .mapa-section .btn-mapa {
-      display: inline-block;
-      margin-top: 16px;
-      background: var(--primary);
-      color: white;
-      padding: 12px 28px;
-      border-radius: 50px;
-      font-weight: 600;
-      transition: 0.3s;
-    }
-    .mapa-section .btn-mapa:hover { background: var(--gold); color: white; transform: translateY(-2px); }
 
     /* ===== RODAPÉ ===== */
     footer {
@@ -424,7 +413,7 @@
       <div class="grid-destinos">
         <!-- Aparecida -->
         <div class="card-destino">
-          <img src="https://cdn.pixabay.com/photo/2019/10/19/18/33/church-4563285_1280.jpg" alt="Santuário Nacional de Nossa Senhora Aparecida" />
+          <img src="https://cdn.pixabay.com/photo/2020/01/27/14/58/santuario-nacional-4796228_1280.jpg" alt="Santuário Nacional de Nossa Senhora Aparecida" onerror="this.src='https://via.placeholder.com/600x400/15acf4/ffffff?text=Santuário+Aparecida'" />
           <div class="info">
             <h3>Aparecida – SP</h3>
             <p>Visita ao maior santuário mariano do mundo. Missa, passeio pela cidade e momentos de oração.</p>
@@ -434,7 +423,7 @@
         </div>
         <!-- Trindade -->
         <div class="card-destino">
-          <img src="https://cdn.pixabay.com/photo/2016/05/27/18/28/church-1423161_1280.jpg" alt="Santuário do Divino Pai Eterno em Trindade-GO" />
+          <img src="https://cdn.pixabay.com/photo/2016/05/27/18/28/church-1423161_1280.jpg" alt="Santuário do Divino Pai Eterno em Trindade-GO" onerror="this.src='https://via.placeholder.com/600x400/9b8556/ffffff?text=Divino+Pai+Eterno'" />
           <div class="info">
             <h3>Trindade – GO</h3>
             <p>Conheça a basílica do Divino Pai Eterno, participe da festa e das celebrações tradicionais.</p>
@@ -444,7 +433,7 @@
         </div>
         <!-- Bom Jesus da Lapa -->
         <div class="card-destino">
-          <img src="https://cdn.pixabay.com/photo/2019/03/08/19/29/church-4043576_1280.jpg" alt="Santuário de Bom Jesus da Lapa na Bahia" />
+          <img src="https://cdn.pixabay.com/photo/2019/03/08/19/29/church-4043576_1280.jpg" alt="Santuário de Bom Jesus da Lapa na Bahia" onerror="this.src='https://via.placeholder.com/600x400/565c3e/ffffff?text=Bom+Jesus+da+Lapa'" />
           <div class="info">
             <h3>Bom Jesus da Lapa – BA</h3>
             <p>Um dos maiores centros de peregrinação do Nordeste. Gruta, fé e paisagens únicas.</p>
@@ -507,7 +496,7 @@
     </div>
   </section>
 
-  <!-- ===== MAPA ===== -->
+  <!-- ===== MAPA (SEM BOTÃO) ===== -->
   <section class="mapa-section" id="mapa">
     <div class="container">
       <h2>Rota de Valparaíso de Goiás até Aparecida - SP</h2>
@@ -517,11 +506,6 @@
         allowfullscreen=""
         loading="lazy">
       </iframe>
-      <div style="text-align: center; margin-top: 20px;">
-        <a href="https://www.google.com/maps/dir/Valpara%C3%ADso+de+Goi%C3%A1s,+GO/Santu%C3%A1rio+Nacional+de+Nossa+Senhora+Aparecida,+Aparecida+-+SP" target="_blank" class="btn-mapa">
-          🗺️ Abrir rota no Google Maps
-        </a>
-      </div>
     </div>
   </section>
 

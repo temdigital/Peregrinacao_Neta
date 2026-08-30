@@ -21,14 +21,15 @@
     body {
       font-family: 'Inter', sans-serif;
       min-height: 100vh;
-      background: linear-gradient(135deg, var(--primary), #0d7bb5);
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)),
+                  url('https://cdn.pixabay.com/photo/2015/07/14/08/49/vatican-843901_1280.jpg') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
     }
     .login-container {
-      max-width: 420px;
+      max-width: 400px;
       width: 100%;
       background: rgba(255,255,255,0.1);
       backdrop-filter: blur(20px);
@@ -103,20 +104,9 @@
       transform: translateY(-2px);
       box-shadow: 0 8px 25px rgba(155,133,86,0.5);
     }
-    .login-container .btn-secondary {
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.3);
-      color: white;
-      box-shadow: none;
-      margin-top: 10px;
-    }
-    .login-container .btn-secondary:hover {
-      background: rgba(255,255,255,0.1);
-      transform: translateY(-2px);
-    }
     .login-container .links {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       margin: 16px 0 10px;
       font-size: 0.85rem;
     }
@@ -149,20 +139,6 @@
       transition: 0.3s;
     }
     .login-container .back-link:hover { color: white; }
-    .login-container .divider {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin: 20px 0;
-      opacity: 0.3;
-    }
-    .login-container .divider::before,
-    .login-container .divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: white;
-    }
     .hidden { display: none !important; }
   </style>
 </head>
@@ -184,33 +160,7 @@
       <div id="loginError" class="error-msg"></div>
       <button class="btn-login" id="loginBtn">Entrar</button>
       <div class="links">
-        <a id="showRegisterLink">Criar conta</a>
         <a id="showRecoverLink">Esqueci a senha</a>
-      </div>
-    </div>
-
-    <!-- ===== FORMULÁRIO DE CADASTRO ===== -->
-    <div id="registerForm" class="hidden">
-      <div class="form-group">
-        <label>Nome completo</label>
-        <input type="text" id="registerName" placeholder="Seu nome" />
-      </div>
-      <div class="form-group">
-        <label>E-mail</label>
-        <input type="email" id="registerEmail" placeholder="seu@email.com" />
-      </div>
-      <div class="form-group">
-        <label>Senha</label>
-        <input type="password" id="registerPassword" placeholder="Mínimo 6 caracteres" />
-      </div>
-      <div class="form-group">
-        <label>Confirmar senha</label>
-        <input type="password" id="registerConfirm" placeholder="Digite novamente" />
-      </div>
-      <div id="registerError" class="error-msg"></div>
-      <button class="btn-login" id="registerBtn">Cadastrar</button>
-      <div class="links">
-        <a id="backToLoginLink">← Voltar para o login</a>
       </div>
     </div>
 
@@ -232,63 +182,36 @@
   </div>
 
   <script>
-    // ===== ELEMENTOS =====
     const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
     const recoverForm = document.getElementById('recoverForm');
     const formTitle = document.getElementById('formTitle');
-
     const loginBtn = document.getElementById('loginBtn');
-    const registerBtn = document.getElementById('registerBtn');
     const recoverBtn = document.getElementById('recoverBtn');
-
     const loginEmail = document.getElementById('loginEmail');
     const loginPassword = document.getElementById('loginPassword');
     const loginError = document.getElementById('loginError');
-
-    const registerName = document.getElementById('registerName');
-    const registerEmail = document.getElementById('registerEmail');
-    const registerPassword = document.getElementById('registerPassword');
-    const registerConfirm = document.getElementById('registerConfirm');
-    const registerError = document.getElementById('registerError');
-
     const recoverEmail = document.getElementById('recoverEmail');
     const recoverError = document.getElementById('recoverError');
     const recoverSuccess = document.getElementById('recoverSuccess');
 
-    // ===== FUNÇÕES DE NAVEGAÇÃO =====
     function showLogin() {
       loginForm.classList.remove('hidden');
-      registerForm.classList.add('hidden');
       recoverForm.classList.add('hidden');
       formTitle.textContent = 'Acesse sua conta';
-      clearErrors();
-    }
-    function showRegister() {
-      loginForm.classList.add('hidden');
-      registerForm.classList.remove('hidden');
-      recoverForm.classList.add('hidden');
-      formTitle.textContent = 'Crie sua conta';
-      clearErrors();
+      loginError.textContent = '';
+      recoverError.textContent = '';
+      recoverSuccess.classList.add('hidden');
     }
     function showRecover() {
       loginForm.classList.add('hidden');
-      registerForm.classList.add('hidden');
       recoverForm.classList.remove('hidden');
       formTitle.textContent = 'Recuperar senha';
-      clearErrors();
+      loginError.textContent = '';
+      recoverError.textContent = '';
       recoverSuccess.classList.add('hidden');
     }
-    function clearErrors() {
-      loginError.textContent = '';
-      registerError.textContent = '';
-      recoverError.textContent = '';
-    }
 
-    // ===== EVENTOS DE NAVEGAÇÃO =====
-    document.getElementById('showRegisterLink').addEventListener('click', showRegister);
     document.getElementById('showRecoverLink').addEventListener('click', showRecover);
-    document.getElementById('backToLoginLink').addEventListener('click', showLogin);
     document.getElementById('backToLoginFromRecover').addEventListener('click', showLogin);
 
     // ===== LOGIN =====
@@ -307,32 +230,6 @@
       }
     });
 
-    // ===== CADASTRO =====
-    registerBtn.addEventListener('click', function() {
-      const name = registerName.value.trim();
-      const email = registerEmail.value.trim();
-      const pass = registerPassword.value.trim();
-      const confirm = registerConfirm.value.trim();
-
-      if (!name || !email || !pass || !confirm) {
-        registerError.textContent = 'Preencha todos os campos.';
-        return;
-      }
-      if (pass.length < 6) {
-        registerError.textContent = 'A senha deve ter pelo menos 6 caracteres.';
-        return;
-      }
-      if (pass !== confirm) {
-        registerError.textContent = 'As senhas não coincidem.';
-        return;
-      }
-      // Simulação de cadastro
-      alert('✅ Conta criada com sucesso! Faça login.');
-      showLogin();
-      loginEmail.value = email;
-      loginPassword.value = '';
-    });
-
     // ===== RECUPERAÇÃO =====
     recoverBtn.addEventListener('click', function() {
       const email = recoverEmail.value.trim();
@@ -341,7 +238,6 @@
         recoverSuccess.classList.add('hidden');
         return;
       }
-      // Simulação de envio
       recoverError.textContent = '';
       recoverSuccess.classList.remove('hidden');
       setTimeout(() => {
@@ -354,7 +250,6 @@
       input.addEventListener('keydown', function(e) {
         if (e.key === 'Enter') {
           if (!loginForm.classList.contains('hidden')) loginBtn.click();
-          else if (!registerForm.classList.contains('hidden')) registerBtn.click();
           else if (!recoverForm.classList.contains('hidden')) recoverBtn.click();
         }
       });
