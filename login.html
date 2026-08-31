@@ -4,62 +4,79 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
   <title>Login – Peregrinação com a Neta</title>
+  <meta name="description" content="Acesse sua conta da Peregrinação com a Neta para gerenciar reservas e acompanhar seus passeios." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛪</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    /* ============================================================
+       RESET E VARIÁVEIS
+       ============================================================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     :root {
-      --primary: #15acf4;
-      --dark: #202718;
-      --gold: #9b8556;
-      --light: #d0c9bb;
-      --white: #ffffff;
-      --radius: 16px;
+      --azul: #002776;
+      --verde: #009739;
+      --amarelo: #FFDF00;
+      --branco: #FFFFFF;
+      --radius: 24px;
       --shadow: 0 8px 30px rgba(0,0,0,0.2);
     }
+
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       min-height: 100vh;
-      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.6)),
+      background: linear-gradient(rgba(0,39,118,0.55), rgba(0,0,0,0.65)),
                   url('https://cdn.pixabay.com/photo/2015/07/14/08/49/vatican-843901_1280.jpg') center/cover no-repeat;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
     }
+
     .login-container {
       max-width: 400px;
       width: 100%;
       background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      padding: 40px 30px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      padding: 40px 32px;
       border-radius: var(--radius);
       border: 1px solid rgba(255,255,255,0.15);
       box-shadow: var(--shadow);
-      color: white;
+      color: var(--branco);
       animation: fadeUp 0.6s ease;
     }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
     .login-container h1 {
       text-align: center;
       font-size: 2rem;
       font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
-    .login-container h1 span { color: var(--gold); }
+    .login-container h1 span {
+      color: var(--amarelo);
+    }
     .login-container .sub {
       text-align: center;
       opacity: 0.8;
-      margin-bottom: 30px;
+      margin-bottom: 32px;
       font-size: 0.95rem;
     }
+
     .login-container .form-group {
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
     .login-container label {
       display: block;
@@ -74,36 +91,40 @@
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.15);
       border-radius: 12px;
-      color: white;
+      color: var(--branco);
       font-size: 1rem;
       outline: none;
       transition: 0.3s;
     }
     .login-container input:focus {
-      border-color: var(--gold);
+      border-color: var(--amarelo);
       background: rgba(255,255,255,0.12);
-      box-shadow: 0 0 0 3px rgba(155,133,86,0.2);
+      box-shadow: 0 0 0 3px rgba(255,223,0,0.2);
     }
-    .login-container input::placeholder { color: rgba(255,255,255,0.4); }
+    .login-container input::placeholder {
+      color: rgba(255,255,255,0.4);
+    }
+
     .login-container .btn-login {
       width: 100%;
       padding: 15px;
-      background: var(--gold);
-      color: white;
+      background: var(--amarelo);
+      color: var(--azul);
       border: none;
       border-radius: 50px;
       font-weight: 700;
       font-size: 1.1rem;
       cursor: pointer;
       transition: 0.3s;
-      box-shadow: 0 4px 15px rgba(155,133,86,0.3);
+      box-shadow: 0 4px 15px rgba(255,223,0,0.3);
       margin-top: 6px;
     }
     .login-container .btn-login:hover {
-      background: #b89a63;
+      background: #f0cc00;
       transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(155,133,86,0.5);
+      box-shadow: 0 8px 25px rgba(255,223,0,0.5);
     }
+
     .login-container .links {
       display: flex;
       justify-content: flex-end;
@@ -116,7 +137,10 @@
       cursor: pointer;
       text-decoration: none;
     }
-    .login-container .links a:hover { color: white; }
+    .login-container .links a:hover {
+      color: var(--amarelo);
+    }
+
     .login-container .error-msg {
       color: #ff6b6b;
       font-size: 0.85rem;
@@ -129,35 +153,54 @@
       min-height: 24px;
       margin-top: 4px;
     }
+
     .login-container .back-link {
       display: block;
       text-align: center;
-      margin-top: 20px;
+      margin-top: 24px;
       color: rgba(255,255,255,0.6);
       font-size: 0.85rem;
       text-decoration: none;
       transition: 0.3s;
     }
-    .login-container .back-link:hover { color: white; }
-    .hidden { display: none !important; }
+    .login-container .back-link:hover {
+      color: var(--branco);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ============================================================
+       RESPONSIVO
+       ============================================================ */
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 32px 20px;
+      }
+      .login-container h1 {
+        font-size: 1.6rem;
+      }
+    }
   </style>
 </head>
+
 <body>
   <div class="login-container" id="app">
     <h1>Peregrinação<span> com a Neta</span></h1>
     <p class="sub" id="formTitle">Acesse sua conta</p>
 
     <!-- ===== FORMULÁRIO DE LOGIN ===== -->
-    <div id="loginForm">
+    <div id="loginForm" role="form" aria-label="Login">
       <div class="form-group">
-        <label>E-mail</label>
-        <input type="email" id="loginEmail" placeholder="seu@email.com" />
+        <label for="loginEmail">E-mail</label>
+        <input type="email" id="loginEmail" placeholder="seu@email.com" autocomplete="email" />
       </div>
       <div class="form-group">
-        <label>Senha</label>
-        <input type="password" id="loginPassword" placeholder="••••••••" />
+        <label for="loginPassword">Senha</label>
+        <input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password" />
       </div>
-      <div id="loginError" class="error-msg"></div>
+      <div id="loginError" class="error-msg" role="alert"></div>
       <button class="btn-login" id="loginBtn">Entrar</button>
       <div class="links">
         <a id="showRecoverLink">Esqueci a senha</a>
@@ -165,13 +208,13 @@
     </div>
 
     <!-- ===== FORMULÁRIO DE RECUPERAÇÃO ===== -->
-    <div id="recoverForm" class="hidden">
+    <div id="recoverForm" class="hidden" role="form" aria-label="Recuperação de senha">
       <div class="form-group">
-        <label>E-mail cadastrado</label>
-        <input type="email" id="recoverEmail" placeholder="seu@email.com" />
+        <label for="recoverEmail">E-mail cadastrado</label>
+        <input type="email" id="recoverEmail" placeholder="seu@email.com" autocomplete="email" />
       </div>
-      <div id="recoverError" class="error-msg"></div>
-      <div id="recoverSuccess" class="success-msg hidden">✅ Link de recuperação enviado para seu e-mail.</div>
+      <div id="recoverError" class="error-msg" role="alert"></div>
+      <div id="recoverSuccess" class="success-msg hidden" role="status">✅ Link de recuperação enviado para seu e-mail.</div>
       <button class="btn-login" id="recoverBtn">Enviar link</button>
       <div class="links">
         <a id="backToLoginFromRecover">← Voltar para o login</a>
@@ -182,78 +225,114 @@
   </div>
 
   <script>
-    const loginForm = document.getElementById('loginForm');
-    const recoverForm = document.getElementById('recoverForm');
-    const formTitle = document.getElementById('formTitle');
-    const loginBtn = document.getElementById('loginBtn');
-    const recoverBtn = document.getElementById('recoverBtn');
-    const loginEmail = document.getElementById('loginEmail');
-    const loginPassword = document.getElementById('loginPassword');
-    const loginError = document.getElementById('loginError');
-    const recoverEmail = document.getElementById('recoverEmail');
-    const recoverError = document.getElementById('recoverError');
-    const recoverSuccess = document.getElementById('recoverSuccess');
+    (function() {
+      'use strict';
 
-    function showLogin() {
-      loginForm.classList.remove('hidden');
-      recoverForm.classList.add('hidden');
-      formTitle.textContent = 'Acesse sua conta';
-      loginError.textContent = '';
-      recoverError.textContent = '';
-      recoverSuccess.classList.add('hidden');
-    }
-    function showRecover() {
-      loginForm.classList.add('hidden');
-      recoverForm.classList.remove('hidden');
-      formTitle.textContent = 'Recuperar senha';
-      loginError.textContent = '';
-      recoverError.textContent = '';
-      recoverSuccess.classList.add('hidden');
-    }
+      const loginForm = document.getElementById('loginForm');
+      const recoverForm = document.getElementById('recoverForm');
+      const formTitle = document.getElementById('formTitle');
 
-    document.getElementById('showRecoverLink').addEventListener('click', showRecover);
-    document.getElementById('backToLoginFromRecover').addEventListener('click', showLogin);
+      const loginBtn = document.getElementById('loginBtn');
+      const recoverBtn = document.getElementById('recoverBtn');
 
-    // ===== LOGIN =====
-    loginBtn.addEventListener('click', function() {
-      const email = loginEmail.value.trim();
-      const password = loginPassword.value.trim();
-      if (!email || !password) {
-        loginError.textContent = 'Preencha todos os campos.';
-        return;
-      }
-      // Simulação de login (substituir por chamada real ao Supabase)
-      if (email === 'admin@teste.com' && password === '123456') {
-        window.location.href = 'dashboard.html';
-      } else {
-        loginError.textContent = 'E-mail ou senha incorretos.';
-      }
-    });
+      const loginEmail = document.getElementById('loginEmail');
+      const loginPassword = document.getElementById('loginPassword');
+      const loginError = document.getElementById('loginError');
 
-    // ===== RECUPERAÇÃO =====
-    recoverBtn.addEventListener('click', function() {
-      const email = recoverEmail.value.trim();
-      if (!email) {
-        recoverError.textContent = 'Digite seu e-mail.';
+      const recoverEmail = document.getElementById('recoverEmail');
+      const recoverError = document.getElementById('recoverError');
+      const recoverSuccess = document.getElementById('recoverSuccess');
+
+      function showLogin() {
+        loginForm.classList.remove('hidden');
+        recoverForm.classList.add('hidden');
+        formTitle.textContent = 'Acesse sua conta';
+        loginError.textContent = '';
+        recoverError.textContent = '';
         recoverSuccess.classList.add('hidden');
-        return;
+        // Limpa campos de recuperação
+        recoverEmail.value = '';
       }
-      recoverError.textContent = '';
-      recoverSuccess.classList.remove('hidden');
-      setTimeout(() => {
-        showLogin();
-      }, 3000);
-    });
 
-    // ===== ENTER KEY =====
-    document.querySelectorAll('input').forEach(input => {
-      input.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter') {
-          if (!loginForm.classList.contains('hidden')) loginBtn.click();
-          else if (!recoverForm.classList.contains('hidden')) recoverBtn.click();
+      function showRecover() {
+        loginForm.classList.add('hidden');
+        recoverForm.classList.remove('hidden');
+        formTitle.textContent = 'Recuperar senha';
+        loginError.textContent = '';
+        recoverError.textContent = '';
+        recoverSuccess.classList.add('hidden');
+        // Limpa campos de login
+        loginEmail.value = '';
+        loginPassword.value = '';
+      }
+
+      document.getElementById('showRecoverLink').addEventListener('click', showRecover);
+      document.getElementById('backToLoginFromRecover').addEventListener('click', showLogin);
+
+      // ===== LOGIN =====
+      loginBtn.addEventListener('click', function() {
+        const email = loginEmail.value.trim();
+        const password = loginPassword.value.trim();
+
+        if (!email || !password) {
+          loginError.textContent = 'Preencha todos os campos.';
+          return;
+        }
+
+        // Simulação de login (substituir por chamada real ao Supabase)
+        if (email === 'admin@teste.com' && password === '123456') {
+          window.location.href = 'dashboard.html';
+        } else {
+          loginError.textContent = 'E-mail ou senha incorretos.';
         }
       });
-    });
+
+      // ===== RECUPERAÇÃO =====
+      recoverBtn.addEventListener('click', function() {
+        const email = recoverEmail.value.trim();
+
+        if (!email) {
+          recoverError.textContent = 'Digite seu e-mail.';
+          recoverSuccess.classList.add('hidden');
+          return;
+        }
+
+        // Simula envio de link
+        recoverError.textContent = '';
+        recoverSuccess.classList.remove('hidden');
+
+        // Volta para login após 3 segundos
+        setTimeout(function() {
+          showLogin();
+        }, 3000);
+      });
+
+      // ===== ENTER KEY =====
+      document.querySelectorAll('input').forEach(function(input) {
+        input.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            if (!loginForm.classList.contains('hidden')) {
+              loginBtn.click();
+            } else if (!recoverForm.classList.contains('hidden')) {
+              recoverBtn.click();
+            }
+          }
+        });
+      });
+
+      // ===== FOCUS VISIBLE =====
+      document.querySelectorAll('input, button, a').forEach(function(el) {
+        el.addEventListener('focus', function() {
+          this.style.outline = '2px solid var(--amarelo)';
+          this.style.outlineOffset = '2px';
+        });
+        el.addEventListener('blur', function() {
+          this.style.outline = 'none';
+        });
+      });
+
+    })();
   </script>
 </body>
 </html>

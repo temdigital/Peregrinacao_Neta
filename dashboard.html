@@ -4,78 +4,114 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
   <title>Dashboard – Peregrinação com a Neta</title>
+  <meta name="description" content="Gerencie suas reservas e acompanhe seus passeios na Peregrinação com a Neta." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⛪</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --primary: #15acf4;
-      --dark: #202718;
-      --gold: #9b8556;
-      --light: #d0c9bb;
-      --white: #ffffff;
-      --radius: 16px;
-      --shadow: 0 8px 30px rgba(0,0,0,0.15);
+    /* ============================================================
+       RESET E VARIÁVEIS
+       ============================================================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
+
+    :root {
+      --azul: #002776;
+      --verde: #009739;
+      --amarelo: #FFDF00;
+      --branco: #FFFFFF;
+      --cinza-claro: #f5f3f0;
+      --texto: #1e1c1a;
+      --radius: 24px;
+      --shadow-card: 0 8px 30px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+      --shadow-hover: 0 16px 40px rgba(0,0,0,0.12), 0 4px 12px rgba(0,0,0,0.06);
+      --transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+    }
+
     body {
-      font-family: 'Inter', sans-serif;
-      background: linear-gradient(135deg, var(--primary), #0d7bb5);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(135deg, var(--azul), #001a4d);
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 20px;
     }
+
     .dashboard-container {
-      max-width: 700px;
+      max-width: 720px;
       width: 100%;
-      background: rgba(255,255,255,0.1);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       padding: 50px 40px;
       border-radius: var(--radius);
       border: 1px solid rgba(255,255,255,0.15);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-card);
       text-align: center;
-      color: white;
+      color: var(--branco);
       animation: fadeUp 0.6s ease;
     }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    .dashboard-container h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 12px; }
-    .dashboard-container h1 span { color: var(--gold); }
-    .dashboard-container .welcome { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9; }
+
+    .dashboard-container h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .dashboard-container h1 span {
+      color: var(--amarelo);
+    }
+
+    .dashboard-container .welcome {
+      font-size: 1.2rem;
+      margin-bottom: 32px;
+      opacity: 0.9;
+      line-height: 1.5;
+    }
+
     .dashboard-container .avatar {
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      background: var(--gold);
+      background: var(--amarelo);
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 20px;
       font-size: 2.8rem;
-      box-shadow: 0 4px 20px rgba(155,133,86,0.3);
+      box-shadow: 0 4px 20px rgba(255,223,0,0.3);
     }
+
     .dashboard-container .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin: 30px 0;
     }
+
     .dashboard-container .info-card {
       background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       padding: 20px;
-      border-radius: 12px;
+      border-radius: 16px;
       border: 1px solid rgba(255,255,255,0.05);
-      transition: 0.3s;
+      transition: var(--transition);
     }
     .dashboard-container .info-card:hover {
       background: rgba(255,255,255,0.15);
-      transform: scale(1.02);
+      transform: translateY(-4px);
+      border-color: var(--amarelo);
     }
     .dashboard-container .info-card .label {
       font-size: 0.8rem;
@@ -88,16 +124,22 @@
       font-weight: 700;
       margin-top: 4px;
     }
+    .dashboard-container .info-card .detail {
+      font-size: 0.9rem;
+      opacity: 0.7;
+      margin-top: 4px;
+    }
+
     .dashboard-container .btn-voltar {
       display: inline-block;
       margin-top: 20px;
-      background: white;
-      color: var(--primary);
+      background: var(--branco);
+      color: var(--azul);
       padding: 12px 32px;
       border-radius: 50px;
       font-weight: 600;
       text-decoration: none;
-      transition: 0.3s;
+      transition: var(--transition);
       border: none;
       cursor: pointer;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -105,57 +147,93 @@
     .dashboard-container .btn-voltar:hover {
       transform: translateY(-3px);
       box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-      background: var(--gold);
-      color: white;
+      background: var(--amarelo);
+      color: var(--azul);
     }
+
     .dashboard-container .logout {
-      margin-top: 20px;
+      margin-top: 16px;
       display: inline-block;
       color: rgba(255,255,255,0.7);
-      background: rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.08);
       padding: 8px 24px;
       border-radius: 30px;
       font-size: 0.9rem;
       text-decoration: none;
-      transition: 0.3s;
+      transition: var(--transition);
     }
     .dashboard-container .logout:hover {
-      background: rgba(255,255,255,0.2);
-      color: white;
+      background: rgba(255,255,255,0.15);
+      color: var(--branco);
     }
-    @media (max-width: 500px) {
-      .dashboard-container { padding: 30px 20px; }
-      .dashboard-container h1 { font-size: 1.8rem; }
-      .dashboard-container .info-grid { grid-template-columns: 1fr; }
+
+    /* ============================================================
+       RESPONSIVO
+       ============================================================ */
+    @media (max-width: 600px) {
+      .dashboard-container {
+        padding: 32px 20px;
+      }
+      .dashboard-container h1 {
+        font-size: 1.8rem;
+      }
+      .dashboard-container .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .dashboard-container {
+        padding: 24px 16px;
+      }
+      .dashboard-container h1 {
+        font-size: 1.5rem;
+      }
+      .dashboard-container .avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 2rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
     }
   </style>
 </head>
+
 <body>
-  <div class="dashboard-container">
-    <div class="avatar">🙏</div>
+  <div class="dashboard-container" role="main">
+    <div class="avatar" aria-hidden="true">🙏</div>
     <h1>Bem-vindo, <span>Peregrino</span></h1>
-    <p class="welcome">Você está na área restrita da <strong>Peregrinação com a Neta</strong>.<br />Aqui você pode gerenciar suas reservas e acompanhar os passeios.</p>
+    <p class="welcome">
+      Você está na área restrita da <strong>Peregrinação com a Neta</strong>.<br />
+      Aqui você pode gerenciar suas reservas e acompanhar os passeios.
+    </p>
 
     <div class="info-grid">
       <div class="info-card">
         <div class="label">Próximo passeio</div>
         <div class="value">Aparecida – SP</div>
-        <div style="font-size:0.9rem; opacity:0.7;">15 de agosto de 2026</div>
+        <div class="detail">15 de agosto de 2026</div>
       </div>
       <div class="info-card">
         <div class="label">Parcelas pagas</div>
         <div class="value">3 / 6</div>
-        <div style="font-size:0.9rem; opacity:0.7;">R$ 150,00 já pagos</div>
+        <div class="detail">R$ 150,00 já pagos</div>
       </div>
       <div class="info-card">
         <div class="label">Documentos</div>
         <div class="value">✓</div>
-        <div style="font-size:0.9rem; opacity:0.7;">Todos pendentes</div>
+        <div class="detail">Todos pendentes</div>
       </div>
       <div class="info-card">
         <div class="label">Status da viagem</div>
         <div class="value">Confirmada</div>
-        <div style="font-size:0.9rem; opacity:0.7;">30 vagas disponíveis</div>
+        <div class="detail">30 vagas disponíveis</div>
       </div>
     </div>
 
